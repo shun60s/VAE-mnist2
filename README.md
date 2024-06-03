@@ -1,7 +1,7 @@
 #  VAE mnist2   
 
 This draws lattice point images of each digit number by VAE method using MNIST dataset.   
-This is cloned from [VAE](https://github.com/beginaid/VAE) and changed.  
+This is cloned from [VAE](https://github.com/beginaid/VAE) and change.  
 
 ## usage  
 

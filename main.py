@@ -95,7 +95,7 @@ class Main():
             None.
         """
         transform = transforms.Compose([transforms.ToTensor(), transforms.Lambda(lambda x: x.view(-1))]) # Preprocessing for MNIST images
-         if 1:  # when set 1, use specified digit number only in dataset. when set 0, use every digit number.
+        if 1:  # when set 1, use specified digit number only in dataset. when set 0, use every digit number.
             dataset_train_valid = mnist2.MNIST("./data", train=True, download=True, transform=transform,digit_number=self.digit_number) # Separate train data and test data to get a dataset
             dataset_test = mnist2.MNIST("./data", train=False, download=True, transform=transform,digit_number=self.digit_number)
         else:

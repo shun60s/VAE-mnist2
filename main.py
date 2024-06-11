@@ -95,8 +95,12 @@ class Main():
             None.
         """
         transform = transforms.Compose([transforms.ToTensor(), transforms.Lambda(lambda x: x.view(-1))]) # Preprocessing for MNIST images
-        dataset_train_valid = mnist2.MNIST("./data", train=True, download=True, transform=transform,digit_number=self.digit_number) # Separate train data and test data to get a dataset
-        dataset_test = mnist2.MNIST("./data", train=False, download=True, transform=transform,digit_number=self.digit_number)
+         if 1:  # when set 1, use specified digit number only in dataset. when set 0, use every digit number.
+            dataset_train_valid = mnist2.MNIST("./data", train=True, download=True, transform=transform,digit_number=self.digit_number) # Separate train data and test data to get a dataset
+            dataset_test = mnist2.MNIST("./data", train=False, download=True, transform=transform,digit_number=self.digit_number)
+        else:
+            dataset_train_valid = datasets.MNIST("./data", train=True, download=True, transform=transform) # Separate train data and test data to get a dataset
+            dataset_test = datasets.MNIST("./data", train=False, download=True, transform=transform)
 
         # Use 20% of train data as validation data
         size_train_valid = len(dataset_train_valid) 
@@ -210,7 +214,7 @@ if __name__ == '__main__':
     parser.add_argument('--load-model', action='store_true', default=False,
                         help='For load previous model dic')
     parser.add_argument('--skip-train', action='store_true', default=False,
-                        help='Enter Visualization')
+                        help='Enter Visualization (skip training)')
     parser.add_argument('--digit-number', type=int, default=1, metavar='N',
                         help='specify digit number (default: 1)')
     args = parser.parse_args()
